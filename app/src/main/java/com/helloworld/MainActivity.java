@@ -1,17 +1,43 @@
 package com.helloworld;
 
+//import android.content.DialogInterface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
+
+    TextView button;
+    TextView label;
+    int count = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        button = (TextView) findViewById(R.id.button);
+        label = (TextView) findViewById(R.id.label);
+
+        button.setOnClickListener(global_ClickListener);
     }
+
+    final OnClickListener global_ClickListener = new OnClickListener() {
+            public void onClick(final View v) {
+                count++;
+
+                if(count % 2 != 0) {
+                    label.setText("Hello world");
+                }
+                else {
+                    label.setText("Click the button");
+                }
+            }
+    };
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
